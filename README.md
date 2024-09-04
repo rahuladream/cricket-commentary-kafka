@@ -19,6 +19,7 @@ Both services are containerized using Docker and are configured to communicate w
 ```bash
 git clone [https://github.com/your-repo/cricket-commentary-app.git](https://github.com/rahuladream/cricket-commentary-kafka)
 cd cricket-commentary-app
+```
 
 ## Build and Start the Docker Containers
 Build the Docker images and start all the services using Docker Compose:
