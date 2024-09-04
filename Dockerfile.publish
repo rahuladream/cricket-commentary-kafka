@@ -1,0 +1,26 @@
+# Dockerfile.publish
+
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+
+COPY wait-for-it.sh /wait-for-it.sh
+
+# Expose port 8001 to the outside world
+EXPOSE 8001
+
+# Define environment variable
+ENV PORT=8001
+
+# Run the application
+CMD ["./wait-for-it.sh", "kafka:9092", "--", "uvicorn", "main_publish:app", "--host", "0.0.0.0", "--port", "8001"]
